@@ -13,6 +13,9 @@
 		59A0D6582907AC0F004C6AED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59A0D6562907AC0F004C6AED /* LaunchScreen.storyboard */; };
 		59A0D6602907AD02004C6AED /* InputContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0D65F2907AD02004C6AED /* InputContainer.swift */; };
 		59A0D6622907BF2D004C6AED /* FullInputContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0D6612907BF2D004C6AED /* FullInputContainer.swift */; };
+		59A0D6662908539F004C6AED /* KidInputSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0D6652908539F004C6AED /* KidInputSection.swift */; };
+		59A0D66829085DAE004C6AED /* PersonalDataBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0D66729085DAE004C6AED /* PersonalDataBlock.swift */; };
+		59A0D66A29085F55004C6AED /* KidHeaderBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0D66929085F54004C6AED /* KidHeaderBlock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		59A0D6592907AC0F004C6AED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59A0D65F2907AD02004C6AED /* InputContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainer.swift; sourceTree = "<group>"; };
 		59A0D6612907BF2D004C6AED /* FullInputContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullInputContainer.swift; sourceTree = "<group>"; };
+		59A0D6652908539F004C6AED /* KidInputSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidInputSection.swift; sourceTree = "<group>"; };
+		59A0D66729085DAE004C6AED /* PersonalDataBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataBlock.swift; sourceTree = "<group>"; };
+		59A0D66929085F54004C6AED /* KidHeaderBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidHeaderBlock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,9 @@
 				59A0D65F2907AD02004C6AED /* InputContainer.swift */,
 				59A0D6612907BF2D004C6AED /* FullInputContainer.swift */,
 				59A0D64F2907AC0F004C6AED /* ViewController.swift */,
+				59A0D66729085DAE004C6AED /* PersonalDataBlock.swift */,
+				59A0D66929085F54004C6AED /* KidHeaderBlock.swift */,
+				59A0D6652908539F004C6AED /* KidInputSection.swift */,
 				59A0D6542907AC0F004C6AED /* Assets.xcassets */,
 				59A0D6562907AC0F004C6AED /* LaunchScreen.storyboard */,
 				59A0D6592907AC0F004C6AED /* Info.plist */,
@@ -138,7 +147,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				59A0D6502907AC0F004C6AED /* ViewController.swift in Sources */,
+				59A0D66829085DAE004C6AED /* PersonalDataBlock.swift in Sources */,
 				59A0D64C2907AC0F004C6AED /* AppDelegate.swift in Sources */,
+				59A0D66A29085F55004C6AED /* KidHeaderBlock.swift in Sources */,
+				59A0D6662908539F004C6AED /* KidInputSection.swift in Sources */,
 				59A0D6602907AD02004C6AED /* InputContainer.swift in Sources */,
 				59A0D6622907BF2D004C6AED /* FullInputContainer.swift in Sources */,
 			);

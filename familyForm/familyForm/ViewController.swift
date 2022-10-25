@@ -13,47 +13,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         viewSetup()
+        kidHeaderBlock.addKidButton.addTarget(self, action: #selector(addKidButtonTapped), for: .touchUpInside)
         layoutSetup()
+        
     }
     
-    private let personalDataLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Персональные данные"
-        label.font = label.font.withSize(20)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    
-     let kidsLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Дети (макс. 5)"
-        label.font = label.font.withSize(20)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let addKidButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .light)
-        button.setTitle("Добавить ребенка", for: .normal)
-        button.setTitleColor(.link, for: .normal)
-        button.setImage(UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 24, weight: .medium)), for: .normal)
-        button.backgroundColor = .white
-        button.layer.borderColor = UIColor.link.cgColor
-        button.layer.borderWidth = 2
-        button.layer.cornerRadius = 25
-        button.layer.masksToBounds = true
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    let kidsContainer: UIStackView = {
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.spacing = 10
-        return stack
-    }()
+    let kidInputSection = KidInputSection()
+    let personalDataBlock = PersonalDataBlock()
+    let kidHeaderBlock = KidHeaderBlock()
     
     let scroll: UIScrollView = {
         let scroll = UIScrollView()
@@ -69,31 +36,43 @@ class ViewController: UIViewController {
         return stack
     }()
     
-    let fullInputContainer = FullInputContainer()
+    @objc private func addKidButtonTapped() {
+        print("success")
+    }
     
     private func viewSetup() {
         view.addSubview(scroll)
         scroll.addSubview(stack)
-        stack.addArrangedSubview(personalDataLabel)
-        stack.addArrangedSubview(fullInputContainer)
-        stack.addArrangedSubview(kidsContainer)
-        kidsContainer.addArrangedSubview(kidsLabel)
-        kidsContainer.addArrangedSubview(addKidButton)
-        
+        stack.addArrangedSubview(personalDataBlock)
+        stack.addArrangedSubview(kidHeaderBlock)
+        stack.addArrangedSubview(kidInputSection)
     }
     
     private func layoutSetup() {
         
         NSLayoutConstraint.activate([
-            scroll.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scroll.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             scroll.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             scroll.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             scroll.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            addKidButton.heightAnchor.constraint(equalToConstant: 50),
-            addKidButton.widthAnchor.constraint(equalToConstant: 210),
+            stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            kidHeaderBlock.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
 
 }
+//
+//extension ViewController: UITextFieldDelegate {
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if textField == ageContainer.field {
+//            let allowedCharacters = CharacterSet.decimalDigits
+//            let characterSet = CharacterSet(charactersIn: string)
+//            return allowedCharacters.isSuperset(of: characterSet)
+//        }
+//        return true
+//    }
+//}
 

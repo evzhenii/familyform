@@ -37,7 +37,6 @@ class FullInputContainer: UIView {
         stack.spacing = 20
         stack.axis = .vertical
         stack.translatesAutoresizingMaskIntoConstraints = false
-        
         return stack
     }()
     
@@ -48,6 +47,7 @@ class FullInputContainer: UIView {
     }
     
     private func layoutSetup() {
+        self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stack.topAnchor.constraint(equalTo: topAnchor),
             stack.leadingAnchor.constraint(equalTo: leadingAnchor),
