@@ -45,7 +45,8 @@ class InputContainer: UIView {
     
     private func borderSetup() {
         self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.red.cgColor
+        self.layer.cornerRadius = 5
+        self.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.1)
     }
     
     private func viewSetup() {

@@ -9,7 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let personalData: UILabel = {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        viewSetup()
+        layoutSetup()
+    }
+    
+    private let personalDataLabel: UILabel = {
         let label = UILabel()
         label.text = "Персональные данные"
         label.font = label.font.withSize(20)
@@ -17,12 +24,35 @@ class ViewController: UIViewController {
         return label
     }()
     
-    let kids: UILabel = {
+    
+     let kidsLabel: UILabel = {
         let label = UILabel()
         label.text = "Дети (макс. 5)"
         label.font = label.font.withSize(20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private let addKidButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .light)
+        button.setTitle("Добавить ребенка", for: .normal)
+        button.setTitleColor(.link, for: .normal)
+        button.setImage(UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 24, weight: .medium)), for: .normal)
+        button.backgroundColor = .white
+        button.layer.borderColor = UIColor.link.cgColor
+        button.layer.borderWidth = 2
+        button.layer.cornerRadius = 25
+        button.layer.masksToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    let kidsContainer: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.spacing = 10
+        return stack
     }()
     
     let scroll: UIScrollView = {
@@ -33,9 +63,6 @@ class ViewController: UIViewController {
     
     let stack: UIStackView = {
         let stack = UIStackView()
-        stack.alignment = .leading
-//        stack.alignment = .fill
-//        stack.distribution = .equalSpacing
         stack.spacing = 20
         stack.axis = .vertical
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -44,20 +71,15 @@ class ViewController: UIViewController {
     
     let fullInputContainer = FullInputContainer()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        viewSetup()
-        layoutSetup()
-    }
-    
-    
     private func viewSetup() {
         view.addSubview(scroll)
         scroll.addSubview(stack)
-        stack.addArrangedSubview(personalData)
+        stack.addArrangedSubview(personalDataLabel)
         stack.addArrangedSubview(fullInputContainer)
-        stack.addArrangedSubview(kids)
+        stack.addArrangedSubview(kidsContainer)
+        kidsContainer.addArrangedSubview(kidsLabel)
+        kidsContainer.addArrangedSubview(addKidButton)
+        
     }
     
     private func layoutSetup() {
@@ -68,16 +90,8 @@ class ViewController: UIViewController {
             scroll.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             scroll.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            stack.topAnchor.constraint(equalTo: scroll.topAnchor),
-            stack.leadingAnchor.constraint(equalTo: scroll.leadingAnchor),
-            stack.trailingAnchor.constraint(equalTo: scroll.trailingAnchor),
-            stack.bottomAnchor.constraint(equalTo: scroll.bottomAnchor),
-            
-            personalData.leadingAnchor.constraint(equalTo: stack.leadingAnchor),
-            personalData.trailingAnchor.constraint(equalTo: stack.trailingAnchor),
-            
-            fullInputContainer.leadingAnchor.constraint(equalTo: stack.leadingAnchor),
-            fullInputContainer.trailingAnchor.constraint(equalTo: stack.trailingAnchor),
+            addKidButton.heightAnchor.constraint(equalToConstant: 50),
+            addKidButton.widthAnchor.constraint(equalToConstant: 210),
         ])
     }
 
