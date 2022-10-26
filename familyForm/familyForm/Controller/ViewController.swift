@@ -5,6 +5,13 @@
 //  Created by boockich mac on 25.10.2022.
 //
 
+/*
+ how to name views
+ how to track kid view index to delete it
+ how to change clear button width (without changing distribution of stackview
+ 
+ */
+
 import UIKit
 
 class ViewController: UIViewController {
@@ -55,10 +62,13 @@ class ViewController: UIViewController {
     @objc private func clearAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Сбросить данные", style: .destructive, handler: { (UIAlertAction) in
+            self.personalDataBlock.input.nameContainer.field.text = ""
+            self.personalDataBlock.input.ageContainer.field.text = ""
             for view in self.kidsArray {
                 view.removeFromSuperview()
                 self.kidsArray.removeLast()
                 self.scroll.contentSize = CGSize(width: self.stack.frame.width, height: self.stack.frame.height + 160)
+                self.scroll.setContentOffset(.zero, animated: true)
             }
         }))
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
@@ -122,9 +132,16 @@ extension ViewController: KidHeaderDelegate {
             let kidInputSection = KidInputSection()
             kidsArray.append(kidInputSection)
             kidInputSection.kidInputDelegate = self
-            for view in kidsArray {
-                stack.insertArrangedSubview(view, at: stack.arrangedSubviews.count - 2)
+            if kidsArray.count == 1 {
+                for view in kidsArray {
+                    stack.insertArrangedSubview(view, at: stack.arrangedSubviews.count - 1)
+                }
+            } else {
+                for view in kidsArray {
+                    stack.insertArrangedSubview(view, at: stack.arrangedSubviews.count - 2)
+                }
             }
+            
             scroll.contentSize = CGSize(width: stack.frame.width, height: stack.frame.height + 160)
         }
     }

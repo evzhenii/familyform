@@ -26,6 +26,7 @@ class FullInputContainer: UIView {
         let container = InputContainer()
         container.title.text = "Возраст"
         container.field.keyboardType = .asciiCapableNumberPad
+        container.field.clearButtonMode = .whileEditing
         container.field.placeholder = "Введите возраст..."
         return container
     }()
