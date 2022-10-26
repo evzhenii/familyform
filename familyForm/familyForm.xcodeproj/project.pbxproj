@@ -63,17 +63,33 @@
 			isa = PBXGroup;
 			children = (
 				59A0D64B2907AC0F004C6AED /* AppDelegate.swift */,
-				59A0D65F2907AD02004C6AED /* InputContainer.swift */,
-				59A0D6612907BF2D004C6AED /* FullInputContainer.swift */,
-				59A0D64F2907AC0F004C6AED /* ViewController.swift */,
-				59A0D66729085DAE004C6AED /* PersonalDataBlock.swift */,
-				59A0D66929085F54004C6AED /* KidHeaderBlock.swift */,
-				59A0D6652908539F004C6AED /* KidInputSection.swift */,
+				59A0D66C29093DBE004C6AED /* Views */,
+				59A0D66B29093D9D004C6AED /* Controller */,
 				59A0D6542907AC0F004C6AED /* Assets.xcassets */,
 				59A0D6562907AC0F004C6AED /* LaunchScreen.storyboard */,
 				59A0D6592907AC0F004C6AED /* Info.plist */,
 			);
 			path = familyForm;
+			sourceTree = "<group>";
+		};
+		59A0D66B29093D9D004C6AED /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				59A0D64F2907AC0F004C6AED /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		59A0D66C29093DBE004C6AED /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				59A0D65F2907AD02004C6AED /* InputContainer.swift */,
+				59A0D6612907BF2D004C6AED /* FullInputContainer.swift */,
+				59A0D66729085DAE004C6AED /* PersonalDataBlock.swift */,
+				59A0D66929085F54004C6AED /* KidHeaderBlock.swift */,
+				59A0D6652908539F004C6AED /* KidInputSection.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

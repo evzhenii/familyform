@@ -7,11 +7,14 @@
 
 import UIKit
 
+protocol KidInputDelegate {
+    func didTapDeleteButton()
+}
+
 class KidInputSection: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         addSubview(input)
         addSubview(deleteButton)
         layoutSetup()
@@ -19,11 +22,14 @@ class KidInputSection: UIView {
     
     private let input = FullInputContainer()
     
-    private let deleteButton: UIButton = {
+    var kidInputDelegate: KidInputDelegate?
+    
+    private lazy var deleteButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .light)
         button.setTitle("Удалить", for: .normal)
         button.setTitleColor(.link, for: .normal)
+        button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -40,6 +46,11 @@ class KidInputSection: UIView {
             deleteButton.centerYAnchor.constraint(equalTo: input.nameContainer.centerYAnchor),
             deleteButton.leadingAnchor.constraint(equalTo: input.trailingAnchor, constant: 20),
         ])
+    }
+    
+    @objc private func deleteButtonTapped() {
+        guard let delegate = kidInputDelegate else { return }
+        delegate.didTapDeleteButton()
     }
     
     required init(coder: NSCoder) {
