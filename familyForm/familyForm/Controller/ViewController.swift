@@ -15,10 +15,12 @@ class ViewController: UIViewController {
         viewSetup()
         delegateSetup()
         layoutSetup()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
-    let kidHeaderBlock = KidHeaderBlock()
     let personalDataBlock = PersonalDataBlock()
+    let kidHeaderBlock = KidHeaderBlock()
     var kidsArray = [UIView]()
     
     lazy private var scroll: UIScrollView = {
@@ -56,6 +58,7 @@ class ViewController: UIViewController {
             for view in self.kidsArray {
                 view.removeFromSuperview()
                 self.kidsArray.removeLast()
+                self.scroll.contentSize = CGSize(width: self.stack.frame.width, height: self.stack.frame.height + 160)
             }
         }))
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
@@ -73,6 +76,8 @@ class ViewController: UIViewController {
     
     private func delegateSetup() {
         kidHeaderBlock.kidHeaderDelegate = self
+        personalDataBlock.input.nameContainer.field.delegate = self
+        personalDataBlock.input.ageContainer.field.delegate = self
     }
     
     private func layoutSetup() {
@@ -90,18 +95,35 @@ class ViewController: UIViewController {
             clearButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+//MARK: - UITextFieldDelegate
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == personalDataBlock.input.nameContainer.field {
+            personalDataBlock.input.ageContainer.field.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+    
 }
 
 //MARK: - KidHeaderDelegate
 extension ViewController: KidHeaderDelegate {
     func didTapAddKid() {
-        print(kidsArray.count)
+        personalDataBlock.input.nameContainer.field.resignFirstResponder()
+        personalDataBlock.input.ageContainer.field.resignFirstResponder()
         if kidsArray.count < 5 {
             let kidInputSection = KidInputSection()
             kidsArray.append(kidInputSection)
             kidInputSection.kidInputDelegate = self
             for view in kidsArray {
-                stack.insertArrangedSubview(view, at: stack.arrangedSubviews.count - 1)
+                stack.insertArrangedSubview(view, at: stack.arrangedSubviews.count - 2)
             }
             scroll.contentSize = CGSize(width: stack.frame.width, height: stack.frame.height + 160)
         }

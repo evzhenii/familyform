@@ -9,7 +9,7 @@ import UIKit
 
 class PersonalDataBlock: UIStackView {
     
-    private let input = FullInputContainer()
+    let input = FullInputContainer()
     
     private let label: UILabel = {
         let label = UILabel()
