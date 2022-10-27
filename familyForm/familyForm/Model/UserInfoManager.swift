@@ -16,10 +16,10 @@ struct UserInfoManager {
     
     mutating func addChild(in userInfoScrollView: UserInfoScrollView) {
         if children.count < 5 {
-            if children.count == 0 {
-                userInfoScrollView.userInfoStackView.insertArrangedSubview(userInfoScrollView.childrenStackView, at: userInfoScrollView.userInfoStackView.arrangedSubviews.count - 1)
-            }
             let childInputView = ChildInputView()
+            if children.count > 0 {
+                childInputView.addSeparator()
+            }
             childInputView.deleteChildButtonDelegate = UserInfoViewController()
             userInfoScrollView.childrenStackView.insertArrangedSubview(childInputView, at: userInfoScrollView.childrenStackView.arrangedSubviews.count - children.count)
             children.append(children.count)
@@ -29,17 +29,7 @@ struct UserInfoManager {
     mutating func deleteChild(_ childInputView: ChildInputView, in userInfoScrollView: UserInfoScrollView) {
         userInfoScrollView.childrenStackView.removeArrangedSubview(childInputView)
         childInputView.removeFromSuperview()
-        print("before deleting there are \(children.count) children")
         children.removeLast()
-
-        clearAll(in: userInfoScrollView)
-        if children.count == 0 {
-        }
-        
-    }
-    
-    func deleteChildrenStackView(in userInfoScrollView: UserInfoScrollView) {
-        userInfoScrollView.childrenStackView.removeFromSuperview()
     }
     
     mutating func clearAll(in userInfoScrollView: UserInfoScrollView) {
@@ -48,7 +38,6 @@ struct UserInfoManager {
             userInfoScrollView.childrenStackView.removeArrangedSubview(subView)
             subView.removeFromSuperview()
         }
-        deleteChildrenStackView(in: userInfoScrollView)
         children.removeAll()
         
         updateScrollView(in: userInfoScrollView)

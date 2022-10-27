@@ -26,7 +26,7 @@ class UserInfoScrollView: UIScrollView {
     
     var childrenStackView: UIStackView = {
         let stack = UIStackView()
-        stack.spacing = 20
+        stack.spacing = 40
         stack.axis = .vertical
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
@@ -47,7 +47,7 @@ class UserInfoScrollView: UIScrollView {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-
+    
     
     private lazy var clearButton: UIButton = {
         let button = UIButton()
@@ -64,8 +64,9 @@ class UserInfoScrollView: UIScrollView {
     }()
     
     @objc func clearAlert() {
-        guard let delegate = clearButtonDelegate else { return }
 
+        guard let delegate = clearButtonDelegate else { return }
+        
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Сбросить данные", style: .destructive, handler: { (UIAlertAction) in
@@ -74,7 +75,6 @@ class UserInfoScrollView: UIScrollView {
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
         
         delegate.presentAlert(with: alert)
-//        self.present(alert, animated: true)
     }
     
     private func viewSetup() {
@@ -82,6 +82,7 @@ class UserInfoScrollView: UIScrollView {
         userInfoStackView.addArrangedSubview(personalInfoLabel)
         userInfoStackView.addArrangedSubview(personalInfoInputView)
         userInfoStackView.addArrangedSubview(childrenHeaderStackView)
+        userInfoStackView.addArrangedSubview(childrenStackView)
         userInfoStackView.addArrangedSubview(clearButton)
     }
     

@@ -34,6 +34,13 @@ class ChildInputView: UIView {
         return button
     }()
     
+    private let separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(cgColor: CGColor(red: 0, green: 0, blue: 0, alpha: 0.1))
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private func layoutSetup() {
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -45,6 +52,16 @@ class ChildInputView: UIView {
             
             deleteChildButton.centerYAnchor.constraint(equalTo: userInfoView.nameInputView.centerYAnchor),
             deleteChildButton.leadingAnchor.constraint(equalTo: userInfoView.trailingAnchor, constant: 20),
+        ])
+    }
+    
+    func addSeparator() {
+        addSubview(separatorView)
+        NSLayoutConstraint.activate([
+            separatorView.topAnchor.constraint(equalTo: bottomAnchor, constant: 20),
+            separatorView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            separatorView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            separatorView.heightAnchor.constraint(equalToConstant: 1),
         ])
     }
     

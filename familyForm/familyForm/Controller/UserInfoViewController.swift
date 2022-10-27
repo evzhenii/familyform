@@ -17,8 +17,6 @@ class UserInfoViewController: UIViewController {
         delegateSetup()
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-        
-//        userInfoScrollView.clearButton.addTarget(self, action: #selector(clearAlert), for: .touchUpInside)
     }
     
     private lazy var userInfoScrollView: UserInfoScrollView = {
@@ -34,10 +32,10 @@ class UserInfoViewController: UIViewController {
             UserInfoManager.shared.clearAll(in: self.userInfoScrollView)
         }))
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
-
+        
         self.present(alert, animated: true)
     }
-
+    
     private func layoutSetup() {
         NSLayoutConstraint.activate([
             userInfoScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
