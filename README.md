@@ -23,6 +23,7 @@ The project contains Personal data input block, as well as dynamic block with ch
 * Deleting children input blocks
 * Limit of total children
 * Clearing all data by actionSheet
+* Adding a divider if there are more than 1 children
 
 ## Requirements
 * iOS 13.0+
