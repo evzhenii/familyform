@@ -9,12 +9,12 @@
  how to name views
  how to track kid view index to delete it
  how to change clear button width (without changing distribution of stackview
- 
+ how to organise code structure (where to put init, viewsetup, variable declarations)
  */
 
 import UIKit
 
-class ViewController: UIViewController {
+class UserInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     
     let personalDataBlock = PersonalDataBlock()
     let kidHeaderBlock = KidHeaderBlock()
-    var kidsArray = [UIView]()
+    var childIndexArray = [Int]()
     
     lazy private var scroll: UIScrollView = {
         let scroll = UIScrollView()
@@ -37,7 +37,15 @@ class ViewController: UIViewController {
         return scroll
     }()
     
-    let stack: UIStackView = {
+    let mainStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.spacing = 20
+        stack.axis = .vertical
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    let childrenStackView: UIStackView = {
         let stack = UIStackView()
         stack.spacing = 20
         stack.axis = .vertical
@@ -62,14 +70,14 @@ class ViewController: UIViewController {
     @objc private func clearAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Сбросить данные", style: .destructive, handler: { (UIAlertAction) in
-            self.personalDataBlock.input.nameContainer.field.text = ""
-            self.personalDataBlock.input.ageContainer.field.text = ""
-            for view in self.kidsArray {
-                view.removeFromSuperview()
-                self.kidsArray.removeLast()
-                self.scroll.contentSize = CGSize(width: self.stack.frame.width, height: self.stack.frame.height + 160)
-                self.scroll.setContentOffset(.zero, animated: true)
-            }
+            self.personalDataBlock.input.nameContainer.textField.text = ""
+            self.personalDataBlock.input.ageContainer.textField.text = ""
+//            for child in self.childIndexArray {
+//                child.view.removeFromSuperview()
+//                self.childIndexArray.remove(at: child.id)
+//            }
+            self.scroll.contentSize = CGSize(width: self.mainStackView.frame.width, height: self.mainStackView.frame.height + 160)
+            self.scroll.setContentOffset(.zero, animated: true)
         }))
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
         
@@ -78,16 +86,17 @@ class ViewController: UIViewController {
     
     private func viewSetup() {
         view.addSubview(scroll)
-        scroll.addSubview(stack)
-        stack.addArrangedSubview(personalDataBlock)
-        stack.addArrangedSubview(kidHeaderBlock)
-        stack.addArrangedSubview(clearButton)
+        scroll.addSubview(mainStackView)
+        mainStackView.addArrangedSubview(personalDataBlock)
+        mainStackView.addArrangedSubview(kidHeaderBlock)
+        mainStackView.addArrangedSubview(childrenStackView)
+        mainStackView.addArrangedSubview(clearButton)
     }
     
     private func delegateSetup() {
         kidHeaderBlock.kidHeaderDelegate = self
-        personalDataBlock.input.nameContainer.field.delegate = self
-        personalDataBlock.input.ageContainer.field.delegate = self
+        personalDataBlock.input.nameContainer.textField.delegate = self
+        personalDataBlock.input.ageContainer.textField.delegate = self
     }
     
     private func layoutSetup() {
@@ -97,24 +106,30 @@ class ViewController: UIViewController {
             scroll.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scroll.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            stack.topAnchor.constraint(equalTo: scroll.topAnchor),
-            stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            mainStackView.topAnchor.constraint(equalTo: scroll.topAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             kidHeaderBlock.heightAnchor.constraint(equalToConstant: 50),
             clearButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    override func loadView() {
+        super.loadView()
+        
     }
 }
 
 //MARK: - UITextFieldDelegate
-extension ViewController: UITextFieldDelegate {
+extension UserInfoViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == personalDataBlock.input.nameContainer.field {
-            personalDataBlock.input.ageContainer.field.becomeFirstResponder()
+        if textField == personalDataBlock.input.nameContainer.textField {
+            personalDataBlock.input.ageContainer.textField.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
         }
@@ -124,35 +139,26 @@ extension ViewController: UITextFieldDelegate {
 }
 
 //MARK: - KidHeaderDelegate
-extension ViewController: KidHeaderDelegate {
+extension UserInfoViewController: KidHeaderDelegate {
     func didTapAddKid() {
-        personalDataBlock.input.nameContainer.field.resignFirstResponder()
-        personalDataBlock.input.ageContainer.field.resignFirstResponder()
-        if kidsArray.count < 5 {
+        personalDataBlock.input.nameContainer.textField.resignFirstResponder()
+        personalDataBlock.input.ageContainer.textField.resignFirstResponder()
+        
+        if childIndexArray.count < 5 {
             let kidInputSection = KidInputSection()
-            kidsArray.append(kidInputSection)
             kidInputSection.kidInputDelegate = self
-            if kidsArray.count == 1 {
-                for view in kidsArray {
-                    stack.insertArrangedSubview(view, at: stack.arrangedSubviews.count - 1)
-                }
-            } else {
-                for view in kidsArray {
-                    stack.insertArrangedSubview(view, at: stack.arrangedSubviews.count - 2)
-                }
-            }
-            
-            scroll.contentSize = CGSize(width: stack.frame.width, height: stack.frame.height + 160)
+            childIndexArray.append(childIndexArray.count)
+            mainStackView.insertArrangedSubview(kidInputSection, at: mainStackView.arrangedSubviews.count - childIndexArray.count)
+            scroll.contentSize = CGSize(width: mainStackView.frame.width, height: mainStackView.frame.height + 160)
         }
     }
 }
 
 //MARK: - KidInputDelegate
-extension ViewController: KidInputDelegate {
-    func didTapDeleteButton() {
-        let view = kidsArray[kidsArray.count - 1]
+extension UserInfoViewController: KidInputDelegate {
+    func didTapDeleteButton(from view: KidInputSection) {
+        childIndexArray.remove(at: childIndexArray.count - 1)
         view.removeFromSuperview()
-        kidsArray.remove(at: kidsArray.count - 1)
-        scroll.contentSize = CGSize(width: stack.frame.width, height: stack.frame.height + 160)
+        scroll.contentSize = CGSize(width: mainStackView.frame.width, height: mainStackView.frame.height + 160)
     }
 }

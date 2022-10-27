@@ -8,19 +8,19 @@
 import UIKit
 
 protocol KidInputDelegate {
-    func didTapDeleteButton()
+    func didTapDeleteButton(from view: KidInputSection)
 }
 
 class KidInputSection: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(input)
+        addSubview(userInfoView)
         addSubview(deleteButton)
         layoutSetup()
     }
     
-    private let input = FullInputContainer()
+    private let userInfoView = UserInfoView()
     
     var kidInputDelegate: KidInputDelegate?
     
@@ -38,19 +38,19 @@ class KidInputSection: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            input.topAnchor.constraint(equalTo: topAnchor),
-            input.leadingAnchor.constraint(equalTo: leadingAnchor),
-            input.widthAnchor.constraint(equalToConstant: 200),
-            input.bottomAnchor.constraint(equalTo: bottomAnchor),
+            userInfoView.topAnchor.constraint(equalTo: topAnchor),
+            userInfoView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            userInfoView.widthAnchor.constraint(equalToConstant: 200),
+            userInfoView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            deleteButton.centerYAnchor.constraint(equalTo: input.nameContainer.centerYAnchor),
-            deleteButton.leadingAnchor.constraint(equalTo: input.trailingAnchor, constant: 20),
+            deleteButton.centerYAnchor.constraint(equalTo: userInfoView.nameContainer.centerYAnchor),
+            deleteButton.leadingAnchor.constraint(equalTo: userInfoView.trailingAnchor, constant: 20),
         ])
     }
     
     @objc private func deleteButtonTapped() {
         guard let delegate = kidInputDelegate else { return }
-        delegate.didTapDeleteButton()
+        delegate.didTapDeleteButton(from: self)
     }
     
     required init(coder: NSCoder) {

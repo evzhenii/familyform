@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FullInputContainer: UIView {
+class UserInfoView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -15,19 +15,19 @@ class FullInputContainer: UIView {
         layoutSetup()
     }
     
-    let nameContainer: InputContainer = {
-        let container = InputContainer()
+    let nameContainer: DataContainerView = {
+        let container = DataContainerView()
         container.title.text = "Имя"
-        container.field.placeholder = "Введите имя..."
+        container.textField.placeholder = "Введите имя..."
         return container
     }()
     
-    let ageContainer: InputContainer = {
-        let container = InputContainer()
+    let ageContainer: DataContainerView = {
+        let container = DataContainerView()
         container.title.text = "Возраст"
-        container.field.keyboardType = .asciiCapableNumberPad
-        container.field.clearButtonMode = .whileEditing
-        container.field.placeholder = "Введите возраст..."
+        container.textField.keyboardType = .asciiCapableNumberPad
+        container.textField.clearButtonMode = .whileEditing
+        container.textField.placeholder = "Введите возраст..."
         return container
     }()
     

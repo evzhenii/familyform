@@ -7,7 +7,7 @@
 
 import UIKit
 
-class InputContainer: UIView {
+class DataContainerView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,7 +34,7 @@ class InputContainer: UIView {
         return title
     }()
     
-    lazy var field: UITextField = {
+    lazy var textField: UITextField = {
         var field = UITextField()
         field.autocorrectionType = .no
         field.returnKeyType = .continue
@@ -52,7 +52,7 @@ class InputContainer: UIView {
     private func viewSetup() {
         addSubview(stack)
         stack.addArrangedSubview(title)
-        stack.addArrangedSubview(field)
+        stack.addArrangedSubview(textField)
     }
     
     private func layoutSetup() {
