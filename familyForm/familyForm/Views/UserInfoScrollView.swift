@@ -21,7 +21,7 @@ class UserInfoScrollView: UIScrollView {
     }
     
     var clearButtonDelegate: ClearButtonDelegate?
-    var personalInfoInputView = UserInfoView()
+    var personalInfoInputView = UserInfoInputView()
     let childrenHeaderStackView = ChildrenHeaderStackView()
     
     var childrenStackView: UIStackView = {

@@ -15,12 +15,12 @@ class ChildInputView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(userInfoView)
+        addSubview(userInfoInputView)
         addSubview(deleteChildButton)
         layoutSetup()
     }
     
-    private let userInfoView = UserInfoView()
+    private let userInfoInputView = UserInfoInputView()
     
     var deleteChildButtonDelegate: DeleteChildButtonDelegate?
     
@@ -45,13 +45,13 @@ class ChildInputView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            userInfoView.topAnchor.constraint(equalTo: topAnchor),
-            userInfoView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            userInfoView.widthAnchor.constraint(equalToConstant: 200),
-            userInfoView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            userInfoInputView.topAnchor.constraint(equalTo: topAnchor),
+            userInfoInputView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            userInfoInputView.widthAnchor.constraint(equalToConstant: 200),
+            userInfoInputView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            deleteChildButton.centerYAnchor.constraint(equalTo: userInfoView.nameInputView.centerYAnchor),
-            deleteChildButton.leadingAnchor.constraint(equalTo: userInfoView.trailingAnchor, constant: 20),
+            deleteChildButton.centerYAnchor.constraint(equalTo: userInfoInputView.nameInputView.centerYAnchor),
+            deleteChildButton.leadingAnchor.constraint(equalTo: userInfoInputView.trailingAnchor, constant: 20),
         ])
     }
     

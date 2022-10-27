@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserInfoView: UIView {
+class UserInfoInputView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

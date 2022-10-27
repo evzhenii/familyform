@@ -51,6 +51,6 @@ struct UserInfoManager {
     
     func updateScrollView(in userInfoScrollView: UserInfoScrollView) {
         let stackViewFrame = userInfoScrollView.userInfoStackView.frame
-        userInfoScrollView.contentSize = CGSize(width: stackViewFrame.width, height: stackViewFrame.height + 160)
+        userInfoScrollView.contentSize = CGSize(width: stackViewFrame.width, height: stackViewFrame.height + 170)
     }
 }
