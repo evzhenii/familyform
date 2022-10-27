@@ -8,7 +8,9 @@
 import UIKit
 
 protocol ClearButtonDelegate {
-    func didTapClearButton(from userInfoScrollView: UserInfoScrollView)
+    
+    func didTapClearButton()
+
     func presentAlert(with alert: UIAlertController)
 }
 
@@ -70,7 +72,7 @@ class UserInfoScrollView: UIScrollView {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Сбросить данные", style: .destructive, handler: { (UIAlertAction) in
-            delegate.didTapClearButton(from: self)
+            delegate.didTapClearButton()
         }))
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
         

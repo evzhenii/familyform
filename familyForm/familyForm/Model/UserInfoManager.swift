@@ -14,19 +14,25 @@ struct UserInfoManager {
     
     static var shared = UserInfoManager()
     
-    mutating func addChild(in userInfoScrollView: UserInfoScrollView) {
+    mutating func createChild(in userInfoScrollView: UserInfoScrollView) -> ChildInputView? {
+        if children.count == 5 {
+            userInfoScrollView.childrenHeaderStackView.addChildButton.isHidden = true
+        }
+        
         if children.count < 5 {
             let childInputView = ChildInputView()
             if children.count > 0 {
                 childInputView.addSeparator()
             }
-            childInputView.deleteChildButtonDelegate = UserInfoViewController()
             userInfoScrollView.childrenStackView.insertArrangedSubview(childInputView, at: userInfoScrollView.childrenStackView.arrangedSubviews.count - children.count)
             children.append(children.count)
+            return childInputView
         }
+        return nil
     }
     
     mutating func deleteChild(_ childInputView: ChildInputView, in userInfoScrollView: UserInfoScrollView) {
+        userInfoScrollView.childrenHeaderStackView.addChildButton.isHidden = false
         userInfoScrollView.childrenStackView.removeArrangedSubview(childInputView)
         childInputView.removeFromSuperview()
         children.removeLast()
@@ -39,7 +45,7 @@ struct UserInfoManager {
             subView.removeFromSuperview()
         }
         children.removeAll()
-        
+        userInfoScrollView.childrenHeaderStackView.addChildButton.isHidden = false
         updateScrollView(in: userInfoScrollView)
         userInfoScrollView.setContentOffset(.zero, animated: true)
     }

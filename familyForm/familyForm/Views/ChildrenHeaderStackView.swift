@@ -12,7 +12,7 @@ protocol AddChildButtonDelegate {
 }
 
 class ChildrenHeaderStackView: UIStackView {
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         spacing = 10
@@ -25,12 +25,6 @@ class ChildrenHeaderStackView: UIStackView {
     
     var addChildButtonDelegate: AddChildButtonDelegate?
     
-    @objc func addChildButtonTappped() {
-        guard let delegate = addChildButtonDelegate else { return }
-        delegate.didTapAddChildButton()
-    }
-    
-    
     private let label: UILabel = {
         let label = UILabel()
         label.text = "Дети (макс. 5)"
@@ -39,7 +33,7 @@ class ChildrenHeaderStackView: UIStackView {
         return label
     }()
     
-    private lazy var addChildButton: UIButton = {
+    lazy var addChildButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .light)
         button.setTitle("Добавить ребенка", for: .normal)
@@ -53,6 +47,11 @@ class ChildrenHeaderStackView: UIStackView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    @objc func addChildButtonTappped() {
+        guard let delegate = addChildButtonDelegate else { return }
+        delegate.didTapAddChildButton()
+    }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

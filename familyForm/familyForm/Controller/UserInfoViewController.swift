@@ -50,6 +50,7 @@ class UserInfoViewController: UIViewController {
         userInfoScrollView.personalInfoInputView.ageInputView.textField.delegate = self
         userInfoScrollView.childrenHeaderStackView.addChildButtonDelegate = self
         userInfoScrollView.clearButtonDelegate = self
+//        userInfoScrollView.ChildInputView.deleteChildButtonDelegate = self
     }
     
     @objc private func dismissKeyboard() {
@@ -74,7 +75,9 @@ extension UserInfoViewController: UITextFieldDelegate {
 extension UserInfoViewController: AddChildButtonDelegate {
     
     func didTapAddChildButton() {
-        UserInfoManager.shared.addChild(in: userInfoScrollView)
+        if let child = UserInfoManager.shared.createChild(in: userInfoScrollView) {
+        child.deleteChildButtonDelegate = self
+        }
         UserInfoManager.shared.updateScrollView(in: userInfoScrollView)
     }
 }
@@ -82,19 +85,19 @@ extension UserInfoViewController: AddChildButtonDelegate {
 //MARK: - DeleteChildButtonDelegate
 extension UserInfoViewController: DeleteChildButtonDelegate {
     
-    func didTapDeleteChildButton(from view: ChildInputView) {
-        UserInfoManager.shared.deleteChild(view, in: userInfoScrollView)
-        UserInfoManager.shared.updateScrollView(in: userInfoScrollView)
+    func didTapDeleteChildButton(from childInputView: ChildInputView) {
+        UserInfoManager.shared.deleteChild(childInputView, in: userInfoScrollView)
     }
 }
 
+//MARK: - ClearButtonDelegate
 extension UserInfoViewController: ClearButtonDelegate {
     
     func presentAlert(with alert: UIAlertController) {
         present(alert, animated: true)
     }
     
-    func didTapClearButton(from userInfoScrollView: UserInfoScrollView) {
+    func didTapClearButton() {
         UserInfoManager.shared.clearAll(in: userInfoScrollView)
     }
 }

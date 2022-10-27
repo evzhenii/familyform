@@ -8,7 +8,8 @@
 import UIKit
 
 protocol DeleteChildButtonDelegate {
-    func didTapDeleteChildButton(from view: ChildInputView)
+    
+    func didTapDeleteChildButton(from childInputView: ChildInputView)
 }
 
 class ChildInputView: UIView {
@@ -33,6 +34,11 @@ class ChildInputView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    @objc private func deleteButtonTapped() {
+        guard let delegate = deleteChildButtonDelegate else { return }
+        delegate.didTapDeleteChildButton(from: self)
+    }
     
     private let separatorView: UIView = {
         let view = UIView()
@@ -63,11 +69,6 @@ class ChildInputView: UIView {
             separatorView.trailingAnchor.constraint(equalTo: trailingAnchor),
             separatorView.heightAnchor.constraint(equalToConstant: 1),
         ])
-    }
-    
-    @objc private func deleteButtonTapped() {
-        guard let delegate = deleteChildButtonDelegate else { return }
-        delegate.didTapDeleteChildButton(from: self)
     }
     
     required init(coder: NSCoder) {
