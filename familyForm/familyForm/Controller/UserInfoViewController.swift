@@ -10,6 +10,7 @@
  how to track kid view index to delete it
  how to change clear button width (without changing distribution of stackview
  how to organise code structure (where to put init, viewsetup, variable declarations)
+ remove childIndexArray to childrenStackView.arrangedSubviews.count
  */
 
 import UIKit
@@ -72,10 +73,12 @@ class UserInfoViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Сбросить данные", style: .destructive, handler: { (UIAlertAction) in
             self.personalDataBlock.input.nameContainer.textField.text = ""
             self.personalDataBlock.input.ageContainer.textField.text = ""
-//            for child in self.childIndexArray {
-//                child.view.removeFromSuperview()
-//                self.childIndexArray.remove(at: child.id)
-//            }
+            self.childrenStackView.arrangedSubviews.forEach { (view) in
+                self.childrenStackView.removeArrangedSubview(view)
+                view.removeFromSuperview()
+                self.childrenStackView.removeFromSuperview()
+            }
+            self.childIndexArray.removeAll()
             self.scroll.contentSize = CGSize(width: self.mainStackView.frame.width, height: self.mainStackView.frame.height + 160)
             self.scroll.setContentOffset(.zero, animated: true)
         }))
@@ -89,7 +92,6 @@ class UserInfoViewController: UIViewController {
         scroll.addSubview(mainStackView)
         mainStackView.addArrangedSubview(personalDataBlock)
         mainStackView.addArrangedSubview(kidHeaderBlock)
-        mainStackView.addArrangedSubview(childrenStackView)
         mainStackView.addArrangedSubview(clearButton)
     }
     
@@ -145,10 +147,13 @@ extension UserInfoViewController: KidHeaderDelegate {
         personalDataBlock.input.ageContainer.textField.resignFirstResponder()
         
         if childIndexArray.count < 5 {
+            if childIndexArray.count == 0 {
+                mainStackView.insertArrangedSubview(childrenStackView, at: mainStackView.arrangedSubviews.count - 1)
+            }
             let kidInputSection = KidInputSection()
             kidInputSection.kidInputDelegate = self
             childIndexArray.append(childIndexArray.count)
-            mainStackView.insertArrangedSubview(kidInputSection, at: mainStackView.arrangedSubviews.count - childIndexArray.count)
+            childrenStackView.addArrangedSubview(kidInputSection)
             scroll.contentSize = CGSize(width: mainStackView.frame.width, height: mainStackView.frame.height + 160)
         }
     }
@@ -157,8 +162,11 @@ extension UserInfoViewController: KidHeaderDelegate {
 //MARK: - KidInputDelegate
 extension UserInfoViewController: KidInputDelegate {
     func didTapDeleteButton(from view: KidInputSection) {
-        childIndexArray.remove(at: childIndexArray.count - 1)
         view.removeFromSuperview()
+        childIndexArray.remove(at: childIndexArray.count - 1)
+        if childIndexArray.count == 0 {
+            self.childrenStackView.removeFromSuperview()
+        }
         scroll.contentSize = CGSize(width: mainStackView.frame.width, height: mainStackView.frame.height + 160)
     }
 }
