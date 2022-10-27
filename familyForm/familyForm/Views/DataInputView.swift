@@ -1,5 +1,5 @@
 //
-//  InputContainer.swift
+//  DataInputView.swift
 //  familyForm
 //
 //  Created by boockich mac on 25.10.2022.
@@ -26,7 +26,7 @@ class DataInputView: UIView {
         return stack
     }()
     
-    lazy var title: UILabel = {
+    let title: UILabel = {
         var title = UILabel()
         title.textColor = .gray
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +34,7 @@ class DataInputView: UIView {
         return title
     }()
     
-    lazy var textField: UITextField = {
+    let textField: UITextField = {
         var field = UITextField()
         field.autocorrectionType = .no
         field.returnKeyType = .continue

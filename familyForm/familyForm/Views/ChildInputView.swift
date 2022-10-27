@@ -1,5 +1,5 @@
 //
-//  KidView.swift
+//  ChildInputView.swift
 //  familyForm
 //
 //  Created by boockich mac on 25.10.2022.
@@ -7,24 +7,24 @@
 
 import UIKit
 
-protocol KidInputDelegate {
-    func didTapDeleteButton(from view: KidInputSection)
+protocol DeleteChildButtonDelegate {
+    func didTapDeleteChildButton(from view: ChildInputView)
 }
 
-class KidInputSection: UIView {
+class ChildInputView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(userInfoView)
-        addSubview(deleteButton)
+        addSubview(deleteChildButton)
         layoutSetup()
     }
     
     private let userInfoView = UserInfoView()
     
-    var kidInputDelegate: KidInputDelegate?
+    var deleteChildButtonDelegate: DeleteChildButtonDelegate?
     
-    private lazy var deleteButton: UIButton = {
+    private lazy var deleteChildButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .light)
         button.setTitle("Удалить", for: .normal)
@@ -43,14 +43,14 @@ class KidInputSection: UIView {
             userInfoView.widthAnchor.constraint(equalToConstant: 200),
             userInfoView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            deleteButton.centerYAnchor.constraint(equalTo: userInfoView.nameInputView.centerYAnchor),
-            deleteButton.leadingAnchor.constraint(equalTo: userInfoView.trailingAnchor, constant: 20),
+            deleteChildButton.centerYAnchor.constraint(equalTo: userInfoView.nameInputView.centerYAnchor),
+            deleteChildButton.leadingAnchor.constraint(equalTo: userInfoView.trailingAnchor, constant: 20),
         ])
     }
     
     @objc private func deleteButtonTapped() {
-        guard let delegate = kidInputDelegate else { return }
-        delegate.didTapDeleteButton(from: self)
+        guard let delegate = deleteChildButtonDelegate else { return }
+        delegate.didTapDeleteChildButton(from: self)
     }
     
     required init(coder: NSCoder) {

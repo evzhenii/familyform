@@ -1,5 +1,5 @@
 //
-//  KidHeaderBlock.swift
+//  ChildrenHeaderStackView.swift
 //  familyForm
 //
 //  Created by boockich mac on 26.10.2022.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-protocol KidHeaderDelegate {
-    func didTapAddKid()
+protocol AddChildButtonDelegate {
+    func didTapAddChildButton()
 }
 
 class ChildrenHeaderStackView: UIStackView {
@@ -18,16 +18,16 @@ class ChildrenHeaderStackView: UIStackView {
          spacing = 10
          distribution = .fillProportionally
          addArrangedSubview(label)
-         addArrangedSubview(addKidButton)
-         addKidButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+         addArrangedSubview(addChildButton)
+         addChildButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
          translatesAutoresizingMaskIntoConstraints = false
      }
     
-    var kidHeaderDelegate: KidHeaderDelegate?
+    var addChildButtonDelegate: AddChildButtonDelegate?
     
-    @objc func addKidButtonTappped() {
-        guard let delegate = kidHeaderDelegate else { return }
-        delegate.didTapAddKid()
+    @objc func addChildButtonTappped() {
+        guard let delegate = addChildButtonDelegate else { return }
+        delegate.didTapAddChildButton()
     }
     
     
@@ -39,7 +39,7 @@ class ChildrenHeaderStackView: UIStackView {
        return label
    }()
    
-   private lazy var addKidButton: UIButton = {
+   private lazy var addChildButton: UIButton = {
        let button = UIButton()
        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .light)
        button.setTitle("Добавить ребенка", for: .normal)
@@ -49,7 +49,7 @@ class ChildrenHeaderStackView: UIStackView {
        button.layer.borderWidth = 2
        button.layer.cornerRadius = 25
        button.layer.masksToBounds = true
-       button.addTarget(self, action: #selector(addKidButtonTappped), for: .touchUpInside)
+       button.addTarget(self, action: #selector(addChildButtonTappped), for: .touchUpInside)
        button.translatesAutoresizingMaskIntoConstraints = false
        return button
    }()

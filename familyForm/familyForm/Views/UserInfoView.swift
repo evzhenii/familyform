@@ -1,5 +1,5 @@
 //
-//  PersonalData.swift
+//  UserInfoView.swift
 //  familyForm
 //
 //  Created by boockich mac on 25.10.2022.
@@ -16,19 +16,20 @@ class UserInfoView: UIView {
     }
     
     let nameInputView: DataInputView = {
-        let container = DataInputView()
-        container.title.text = "Имя"
-        container.textField.placeholder = "Введите имя..."
-        return container
+        let dataInputView = DataInputView()
+        dataInputView.title.text = "Имя"
+        dataInputView.textField.placeholder = "Введите имя..."
+        dataInputView.textField.clearButtonMode = .whileEditing
+        return dataInputView
     }()
     
     let ageInputView: DataInputView = {
-        let container = DataInputView()
-        container.title.text = "Возраст"
-        container.textField.keyboardType = .asciiCapableNumberPad
-        container.textField.clearButtonMode = .whileEditing
-        container.textField.placeholder = "Введите возраст..."
-        return container
+        let dataInputView = DataInputView()
+        dataInputView.title.text = "Возраст"
+        dataInputView.textField.keyboardType = .asciiCapableNumberPad
+        dataInputView.textField.clearButtonMode = .whileEditing
+        dataInputView.textField.placeholder = "Введите возраст..."
+        return dataInputView
     }()
     
     let userInfoStackView: UIStackView = {

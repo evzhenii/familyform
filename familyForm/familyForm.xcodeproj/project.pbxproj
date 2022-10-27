@@ -13,9 +13,9 @@
 		59A0D6582907AC0F004C6AED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59A0D6562907AC0F004C6AED /* LaunchScreen.storyboard */; };
 		59A0D6602907AD02004C6AED /* DataInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0D65F2907AD02004C6AED /* DataInputView.swift */; };
 		59A0D6622907BF2D004C6AED /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0D6612907BF2D004C6AED /* UserInfoView.swift */; };
-		59A0D6662908539F004C6AED /* KidInputSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0D6652908539F004C6AED /* KidInputSection.swift */; };
+		59A0D6662908539F004C6AED /* ChildInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0D6652908539F004C6AED /* ChildInputView.swift */; };
 		59A0D66A29085F55004C6AED /* ChildrenHeaderStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0D66929085F54004C6AED /* ChildrenHeaderStackView.swift */; };
-		59A0D671290A88A0004C6AED /* MainScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0D670290A88A0004C6AED /* MainScrollView.swift */; };
+		59A0D671290A88A0004C6AED /* UserInfoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0D670290A88A0004C6AED /* UserInfoScrollView.swift */; };
 		59A0D673290A8DD1004C6AED /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0D672290A8DD1004C6AED /* UserInfoManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,9 +28,9 @@
 		59A0D6592907AC0F004C6AED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59A0D65F2907AD02004C6AED /* DataInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataInputView.swift; sourceTree = "<group>"; };
 		59A0D6612907BF2D004C6AED /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
-		59A0D6652908539F004C6AED /* KidInputSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidInputSection.swift; sourceTree = "<group>"; };
+		59A0D6652908539F004C6AED /* ChildInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildInputView.swift; sourceTree = "<group>"; };
 		59A0D66929085F54004C6AED /* ChildrenHeaderStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenHeaderStackView.swift; sourceTree = "<group>"; };
-		59A0D670290A88A0004C6AED /* MainScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScrollView.swift; sourceTree = "<group>"; };
+		59A0D670290A88A0004C6AED /* UserInfoScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoScrollView.swift; sourceTree = "<group>"; };
 		59A0D672290A8DD1004C6AED /* UserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,8 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				59A0D64B2907AC0F004C6AED /* AppDelegate.swift */,
-				59A0D66C29093DBE004C6AED /* Views */,
 				59A0D66D29097EA9004C6AED /* Model */,
+				59A0D66C29093DBE004C6AED /* Views */,
 				59A0D66B29093D9D004C6AED /* Controller */,
 				59A0D6542907AC0F004C6AED /* Assets.xcassets */,
 				59A0D6562907AC0F004C6AED /* LaunchScreen.storyboard */,
@@ -86,11 +86,11 @@
 		59A0D66C29093DBE004C6AED /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				59A0D670290A88A0004C6AED /* MainScrollView.swift */,
+				59A0D670290A88A0004C6AED /* UserInfoScrollView.swift */,
 				59A0D65F2907AD02004C6AED /* DataInputView.swift */,
 				59A0D6612907BF2D004C6AED /* UserInfoView.swift */,
 				59A0D66929085F54004C6AED /* ChildrenHeaderStackView.swift */,
-				59A0D6652908539F004C6AED /* KidInputSection.swift */,
+				59A0D6652908539F004C6AED /* ChildInputView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,9 +176,9 @@
 				59A0D6502907AC0F004C6AED /* UserInfoViewController.swift in Sources */,
 				59A0D64C2907AC0F004C6AED /* AppDelegate.swift in Sources */,
 				59A0D66A29085F55004C6AED /* ChildrenHeaderStackView.swift in Sources */,
-				59A0D6662908539F004C6AED /* KidInputSection.swift in Sources */,
+				59A0D6662908539F004C6AED /* ChildInputView.swift in Sources */,
 				59A0D6602907AD02004C6AED /* DataInputView.swift in Sources */,
-				59A0D671290A88A0004C6AED /* MainScrollView.swift in Sources */,
+				59A0D671290A88A0004C6AED /* UserInfoScrollView.swift in Sources */,
 				59A0D673290A8DD1004C6AED /* UserInfoManager.swift in Sources */,
 				59A0D6622907BF2D004C6AED /* UserInfoView.swift in Sources */,
 			);
