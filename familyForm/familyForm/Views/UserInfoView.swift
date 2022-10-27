@@ -15,15 +15,15 @@ class UserInfoView: UIView {
         layoutSetup()
     }
     
-    let nameContainer: DataContainerView = {
-        let container = DataContainerView()
+    let nameInputView: DataInputView = {
+        let container = DataInputView()
         container.title.text = "Имя"
         container.textField.placeholder = "Введите имя..."
         return container
     }()
     
-    let ageContainer: DataContainerView = {
-        let container = DataContainerView()
+    let ageInputView: DataInputView = {
+        let container = DataInputView()
         container.title.text = "Возраст"
         container.textField.keyboardType = .asciiCapableNumberPad
         container.textField.clearButtonMode = .whileEditing
@@ -31,7 +31,7 @@ class UserInfoView: UIView {
         return container
     }()
     
-    let stack: UIStackView = {
+    let userInfoStackView: UIStackView = {
         let stack = UIStackView()
         stack.alignment = .fill
         stack.distribution = .equalSpacing
@@ -42,18 +42,18 @@ class UserInfoView: UIView {
     }()
     
     private func viewSetup() {
-        addSubview(stack)
-        stack.addArrangedSubview(nameContainer)
-        stack.addArrangedSubview(ageContainer)
+        addSubview(userInfoStackView)
+        userInfoStackView.addArrangedSubview(nameInputView)
+        userInfoStackView.addArrangedSubview(ageInputView)
     }
     
     private func layoutSetup() {
         self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stack.topAnchor.constraint(equalTo: topAnchor),
-            stack.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stack.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stack.bottomAnchor.constraint(equalTo: bottomAnchor),
+            userInfoStackView.topAnchor.constraint(equalTo: topAnchor),
+            userInfoStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            userInfoStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            userInfoStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
     

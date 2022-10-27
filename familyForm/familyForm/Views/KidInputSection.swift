@@ -43,7 +43,7 @@ class KidInputSection: UIView {
             userInfoView.widthAnchor.constraint(equalToConstant: 200),
             userInfoView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            deleteButton.centerYAnchor.constraint(equalTo: userInfoView.nameContainer.centerYAnchor),
+            deleteButton.centerYAnchor.constraint(equalTo: userInfoView.nameInputView.centerYAnchor),
             deleteButton.leadingAnchor.constraint(equalTo: userInfoView.trailingAnchor, constant: 20),
         ])
     }

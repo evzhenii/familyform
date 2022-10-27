@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DataContainerView: UIView {
+class DataInputView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

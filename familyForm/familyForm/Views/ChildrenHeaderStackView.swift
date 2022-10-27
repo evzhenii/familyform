@@ -11,7 +11,7 @@ protocol KidHeaderDelegate {
     func didTapAddKid()
 }
 
-class KidHeaderBlock: UIStackView {
+class ChildrenHeaderStackView: UIStackView {
      
      override init(frame: CGRect) {
          super.init(frame: frame)
